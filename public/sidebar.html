@@ -20,7 +20,7 @@
     <script>
         $(document).ready(function() {
             console.log("Document ready, fetching file list..."); // Debug log
-            $.getJSON('/documentation-list', function(data) {
+            $.getJSON('public/documentation', function(data) {
                 console.log("File list received:", data); // Debug log
                 data.forEach(file => {
                     // Calculate the depth based on the number of slashes in the file path
