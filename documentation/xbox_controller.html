@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<head lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Import Jquery to load header and footer-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--Link CSS-->
+    <link rel="stylesheet" href="../css/base.css" />
+
+    <!--Page title in tabs and search results-->
+    <title>12:09 Robohornets | Documentation</title>
+    <meta name="description" content="This website has code documentation for programming for First Robotics in Java.">
+
+    <!--Favicon Code-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ef893d">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    </div>
+
+    <script>
+        $(function () {
+            $("#sidebar").load("../sidebar.html");
+        });
+    </script>
+    <script src="../Prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+</head>
+
+<body style="background-color: #3C3C3C">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The sidebar -->
+    <div id="sidebar" class="sidebarContainer"></div>
+
+    <!-- Page content -->
+    <div class="content">
+        <center>
+            <h1>Xbox Controller</h1>
+        </center>
+        <!-- <h3>Last updated: May 16, 2024</h3> -->
+        <h3 id="sudo"></h3>
+        <script>
+            /* Function to use lastModified property */
+            let x = document.lastModified;
+
+            function formatDate(dateString) {
+                // Split the input string into date and time parts
+                const [datePart, timePart] = dateString.split(' ');
+
+                // Parse the date part
+                const [month, day, year] = datePart.split('/');
+
+                // Create a date object using the UTC time to avoid time zone issues
+                const parsedDate = new Date(Date.UTC(year, month - 1, day));
+
+                // Get the month, date, and year values
+                const formattedMonth = parsedDate.toLocaleString('default', { month: 'long', timeZone: 'UTC' });
+                const formattedDay = parsedDate.getUTCDate(); // Use getUTCDate to avoid local time zone adjustments
+                const formattedYear = parsedDate.getUTCFullYear();
+
+                // Format the date string
+                const formattedDate = `${formattedMonth} ${formattedDay}, ${formattedYear}`;
+
+                return formattedDate;
+            }
+
+            // Example usage
+            const formattedDateString = formatDate(x);
+            console.log(formattedDateString);
+            document.getElementById("sudo").innerHTML = "Last Updated: " + formattedDateString;
+
+        </script>
+<hr>
+<p>
+    To start using Xbox controllers in your code, you have to import the CommandXboxController library from WPILib. 
+</p>
+<pre><code class="language-java">import edu.wpi.first.wpilibj2.command.button.CommandXboxController;</code></pre>
+<p>
+    There is also a library available called XboxController. This is an older version of CommandXboxController and has mostly been replaced.
+</p>
+<hr>
+<p>
+    Before using the controller in your code, you have to create the CommandXboxController object. If you use multiple controllers, each one will need its own object and each object will need to have a different port (the number in parentheses).
+</p>
+<pre><code class="language-java">CommandXboxController joystick = new CommandXboxController(0);</code></pre>
+<hr>
+<p>
+    You can use the controller in your code by calling a specific button and using the .onTrue and .whiteTrue functions.
+</p>
+<pre><code class="language-java">joystick2
+    .leftBumper()
+    .onTrue(
+        Commands.run(
+            () -> {
+            // action here
+            }
+        )
+    )
+    .whileTrue(
+        Commands.run(
+            () -> {
+                // action here
+            }
+        )
+    );</code></pre>
+<p>
+    This code only runs a single command on each action. For more advanced commands, see the <a href="../documentation/commands.html">command page</a> in the documentation.
+</p>
+
+<br>
+<br>
+<br>
+<br>
+</div>
+</body>
