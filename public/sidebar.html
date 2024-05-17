@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Untitled Document</title>
+    <link rel="stylesheet" type="text/css" media="all" href="css/header.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .sidebar a {
+            display: block;
+            white-space: pre; /* Preserve whitespace */
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="/"><pre>Home</pre></a>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            console.log("Document ready, fetching file list..."); // Debug log
+            $.getJSON('/documentation-list', function(data) {
+                console.log("File list received:", data); // Debug log
+                data.forEach(file => {
+                    // Calculate the depth based on the number of slashes in the file path
+                    let depth = file.name.split('/').length - 1;
+                    console.log('depth: ' + depth);
+
+                    // Create indentation based on depth using spaces
+                    let indent = ' '.repeat(depth * 4);
+
+                    // Replace '.html' with an empty string in the file name
+                    let trimmedName = file.name.replace('.html', '').replace(/\s/g,'');
+
+                    // Determine if it's a directory and construct the link accordingly
+                    let filePath = file.isDir ? '#' : 'documentation/' + file.name;
+                    let linkText = file.isDir ? `<strong>${trimmedName.split('/').slice(-1)[0]}</strong>` : trimmedName.split('/').slice(-1)[0];
+
+                    // Append the link to the sidebar with appropriate indentation
+                    $('.sidebar').append(`<a href="${filePath}"><pre>${' '.repeat(depth * 2)}${linkText}</pre></a>`);
+                });
+            }).fail(function(jqxhr, textStatus, error) {
+                console.error("Request Failed: " + textStatus + ", " + error); // Debug log
+            });
+        });
+    </script>
+</body>
+</html>
