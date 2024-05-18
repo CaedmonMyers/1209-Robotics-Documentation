@@ -2,9 +2,10 @@
   "name": "robotics-documentation",
   "version": "1.0.0",
   "description": "",
-  "main": "Prism.js",
+  "main": "server.js",
   "scripts": {
     "build": "node server.js"
+
   },
   "keywords": [],
   "author": "",
