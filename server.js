@@ -3,7 +3,6 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const port = 3000;
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
@@ -27,8 +26,6 @@ function getFiles(dir, baseDir = dir) {
         }
     });
 
-    console.log(fileList);
-
     return fileList;
 }
 
@@ -37,6 +34,4 @@ app.get('/documentation-list', (req, res) => {
     res.json(fileList);
 });
 
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-});
+module.exports = app;
