@@ -44,16 +44,18 @@
         <h3 id="sudo"></h3>
 <hr>
 <p>
-    WPILib has several different supported controller types as well as the ability to add custom controllers.
+    The main way to program robots is by using commands. 
 </p>
 <p>
 
 </p>
 <hr>
 <p>
-    Before using the controller in your code, you have to create the CommandXboxController object. If you use multiple controllers, each one will need its own object and each object will need to have a different port (the number in parentheses).
+    You have to import a few things to use commands in your code.
 </p>
-<pre><code class="language-java">CommandXboxController joystick = new CommandXboxController(0);</code></pre>
+<pre><code class="language-java">import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.Commands;</code></pre>
 <hr>
 <p>
     You can use the controller in your code by calling a specific button and using the .onTrue and .whiteTrue functions.
