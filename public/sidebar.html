@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Untitled Document</title>
-    <link rel="stylesheet" type="text/css" media="all" href="css/header.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="/css/header.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         .sidebar a {
@@ -34,11 +34,13 @@
                     let trimmedName = file.name.replace('.html', '').replace(/\s/g,'');
 
                     // Determine if it's a directory and construct the link accordingly
-                    let filePath = file.isDir ? '#' : 'documentation/' + file.name;
+                    let filePath = file.isDir ? '/documentation/' + file.name.split('/').slice(-1).join() + '/Overview.html' : '/documentation/' + file.name;
                     let linkText = file.isDir ? `<strong>${trimmedName.split('/').slice(-1)[0]}</strong>` : trimmedName.split('/').slice(-1)[0];
 
                     // Append the link to the sidebar with appropriate indentation
-                    $('.sidebar').append(`<a href="${filePath}"><pre>${' '.repeat(depth * 2)}${linkText}</pre></a>`);
+                    if (linkText.includes('Overview') === false) {
+                        $('.sidebar').append(`<a href="${filePath}"><pre>${' '.repeat(depth * 2)}${linkText}</pre></a>`);
+                    }
                 });
             }).fail(function(jqxhr, textStatus, error) {
                 console.error("Request Failed: " + textStatus + ", " + error); // Debug log
