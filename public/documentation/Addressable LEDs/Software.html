@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<head lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Import Jquery to load header and footer-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--Link CSS-->
+    <link rel="stylesheet" href="/css/base.css" />
+
+    <!--Page title in tabs and search results-->
+    <title>12:09 Robohornets | Documentation</title>
+    <meta name="description" content="This website has code documentation for programming for First Robotics in Java.">
+
+    <!--Favicon Code-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ef893d">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    </div>
+
+    <script>
+        $(function () {
+            $("#sidebar").load("/sidebar.html");
+        });
+    </script>
+    <script src="/Prism.js"></script>
+    <script src="/editdates.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+</head>
+
+<body style="background-color: #3C3C3C">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The sidebar -->
+    <div id="sidebar" class="sidebarContainer"></div>
+
+    <!-- Page content -->
+    <div class="content">
+        <center>
+            <h1>Programming Addressable LEDs</h1>
+        </center>
+        <h3 id="sudo"></h3>
+<hr>
+<p>
+    You can program an LED strip or panel to show colors or designs. You have to import a few things first.
+</p>
+<pre><code class="language-java">import edu.wpi.first.wpilibj.AddressableLED;
+import edu.wpi.first.wpilibj.AddressableLEDBuffer;</code></pre>
+<hr>
+<p>
+    First, you have to create the AddressableLED object in your Robot.java file. It will include the 
+    port number which will match the DIO port you use on the RoboRio 
+    <a href="Hardware.html">(see hardware documentation for info)</a>
+</p>
+<pre><code class="language-java">public static AddressableLED m_led = new AddressableLED(9);</code></pre>
+<hr>
+<p>
+    You also have to create an AddressableLEDBuffer object. This takes in a parameter of the number of
+    LEDs 
+</p>
+<pre><code class="language-java">public static AddressableLEDBuffer m_ledBuffer = new AddressableLEDBuffer(32);</code></pre>
+<p>
+    Next, you need to set the length of the length of the AddressableLED object like below.
+</p>
+<pre><code class="language-java">m_led.setLength(m_ledBuffer.getLength());</code></pre>
+<p>
+    .setLength() takes in type int, so you can also set it based on a static value, but basing it on the 
+    length makes changing code a bit easier.
+</p>
+<hr>
+<p>
+    The code below has to be run when you change what is displayed on the LEDs.
+</p>
+<p>
+    Next, we have to set the color values for each LED in the AddressableLEDBuffer object. We can do this 
+    with a loop.
+</p>
+<pre><code class="language-java">for (var i = 0; i < m_ledBuffer.getLength(); i++) {
+    m_ledBuffer.setRGB(i, ledArray[i][0], ledArray[i][1], ledArray[i][2]);
+}</code></pre>
+<p>
+    The code above is structured to use nested arrays of RGB values. To create an array to set the leds,
+    create a variable like below.
+</p>
+<pre><code class="language-java">int[][] ledArray = {{256, 0, 0}, {256, 0, 0}, {256, 0, 0}};</code></pre>
+<p>
+    This array works for 3 LEDs colored red.
+</p>
+<hr>
+<p>
+    Now, you set the AddressableLEDBuffer object to the AddressableLED object.
+</p>
+<pre><code class="language-java">m_led.setData(m_ledBuffer);</code></pre>
+<p>
+    Finally, start the AddressableLED object.
+</p>
+<pre><code class="language-java">m_led.start();</code></pre>
+
+<hr>
+
+<p>
+    If you want to update the LEDs at an interval, you can run code in one of the periodic 
+    functions in Robot.java such as teleopPeriodic (these run every 20ms). This will update the LEDs 
+    once per second. The declaration of timeCounter has to be outside of the periodic function.
+</p>
+<pre><code class="language-java">timeCounter = 0;</code></pre>
+<pre><code class="language-java">if (timeCounter % 50 == 0) {
+    m_led.setLength(m_ledBuffer.getLength());
+
+    for (var i = 0; i < m_ledBuffer.getLength(); i++) {
+        // Sets the specified LED to the RGB values for red
+        m_ledBuffer.setRGB(i, theHutt.javaTheHutt[loopNumber][i][0], theHutt.javaTheHutt[loopNumber][i][1], theHutt.javaTheHutt[loopNumber][i][2]);
+    }
+
+    m_led.setData(m_ledBuffer);
+
+    m_led.start();
+
+    if (loopNumber < 2) {
+        loopNumber += 1;
+    } else {
+        loopNumber = 0;
+    }
+}
+
+timeCounter++;</code></pre>
+
+<br>
+<br>
+<br>
+<br>
+</div>
+</body>
