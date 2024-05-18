@@ -1,6 +1,6 @@
 const username = 'caedmonmyers';
     const repo = '1209-Robotics-Documentation';
-    const token = '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';  // WARNING: Do not expose PAT in production
+    const token = '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';  // WARNING: Do not expose PAT in production
 
     async function fetchLastCommitDate() {
         // Get the current file path from the URL and remove the leading slash if present
