@@ -34,4 +34,27 @@ app.get('/documentation-list', (req, res) => {
     res.json(fileList);
 });
 
+
+// Serve search.js from the root directory
+app.get('/search.js', (req, res) => {
+    res.sendFile(path.join(__dirname, 'search.js'));
+});
+
+// New search endpoint
+app.get('/api/search', (req, res) => {
+    const query = req.query.query.toLowerCase();
+    const documentationDir = path.join(__dirname, 'public', 'documentation');
+    const allFiles = getFiles(documentationDir);
+
+    const results = allFiles
+        .filter(file => file.name.toLowerCase().includes(query) && !file.isDir)
+        .map(file => ({
+            name: file.name,
+            path: `/documentation/${file.name}`
+        }));
+
+    res.json(results);
+});
+
+
 module.exports = app;
