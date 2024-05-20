@@ -30,7 +30,7 @@ document.getElementById('search-form').addEventListener('submit', function(event
                 data.forEach(result => {
                     const resultItem = document.createElement('div');
                     resultItem.classList.add('result-item');
-                    resultItem.innerHTML = `<a href="${result.path}" target="_blank"><h3>${result.name.replace('/Overview.html', '').replace('.html', '')}</h3></a>`;
+                    resultItem.innerHTML = `<a href="${result.path}"><h3>${result.name.replace('/Overview.html', '').replace('.html', '')}</h3></a>`;
                     resultsContainer.appendChild(resultItem);
                 });
             }

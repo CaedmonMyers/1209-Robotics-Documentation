@@ -4,18 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Documentation</title>
-    <link rel="stylesheet" type="text/css" media="all" href="css/search.css"/>
+    <link rel="stylesheet" type="text/css" media="all" href="/css/search.css" />
 </head>
 <body>
     <center>
-    <h1>Search Documentation</h1>
     <form id="search-form">
-        <input type="text" id="search-query" autocomplete="off" placeholder="Enter a search term">
-        <button type="submit">Go</button>
+        <input type="text" id="search-query" class="iHateWebDevelopmentSometimes" autocomplete="off" placeholder="Search">
+        <!-- <button type="submit">Go</button> -->
     </form>
     <!-- <div id="loading">Loading...</div> -->
     <div id="loading" class="loader"></div>
-    <div id="results"></div>
+    <div id="results" class="sidebarSearchResults"></div>
 
     <!-- Reference the script from the root directory -->
     <script src="/search.js"></script>
