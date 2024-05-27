@@ -44,39 +44,20 @@
         <h3 id="sudo"></h3>
 <hr>
 <p>
-    WPILib has several different supported controller types as well as the ability to add custom controllers.
+    WPILib has several different supported controller types as well as the ability to add custom 
+    controllers through Generic HID.
 </p>
 <p>
 
 </p>
 <hr>
 <p>
-    Before using the controller in your code, you have to create the CommandXboxController object. If you use multiple controllers, each one will need its own object and each object will need to have a different port (the number in parentheses).
+    Our documentation covers <a href="/documentation/controllers/Xbox.html">Xbox</a>, 
+    <a href="/documentation/controllers/Play Station.html">PlayStation</a>, 
+    <a href="/documentation/controllers/Wiimote.html">Wiimote</a>, and 
+    <a href="/documentation/controllers/Generic HID.html">Generic HID</a> controllers.
 </p>
-<pre><code class="language-java">CommandXboxController joystick = new CommandXboxController(0);</code></pre>
-<hr>
-<p>
-    You can use the controller in your code by calling a specific button and using the .onTrue and .whiteTrue functions.
-</p>
-<pre><code class="language-java">joystick2
-    .leftBumper()
-    .onTrue(
-        Commands.run(
-            () -> {
-            // action here
-            }
-        )
-    )
-    .whileTrue(
-        Commands.run(
-            () -> {
-                // action here
-            }
-        )
-    );</code></pre>
-<p>
-    This code only runs a single command on each action. For more advanced commands, see the <a href="../documentation/commands.html">command page</a> in the documentation.
-</p>
+<!-- <pre><code class="language-java">CommandXboxController joystick = new CommandXboxController(0);</code></pre> -->
 
 <br>
 <br>

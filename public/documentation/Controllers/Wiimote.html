@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<head lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Import Jquery to load header and footer-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--Link CSS-->
+    <link rel="stylesheet" href="/css/base.css" />
+
+    <!--Page title in tabs and search results-->
+    <title>12:09 Robohornets | Documentation</title>
+    <meta name="description" content="This website has code documentation for programming for First Robotics in Java.">
+
+    <!--Favicon Code-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ef893d">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    </div>
+
+    <script>
+        $(function () {
+            $("#sidebar").load("/sidebar.html");
+        });
+    </script>
+    <script src="/Prism.js"></script>
+    <script src="/editdates.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+
+    <link rel="preload" href="/sidebar.html" as="fetch" type="text/html" crossorigin="anonymous">
+    <link rel="preload" as="script" href="/Prism.js">
+</head>
+
+<body style="background-color: #3C3C3C">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The sidebar -->
+    <div id="sidebar" class="sidebarContainer"></div>
+
+    <!-- Page content -->
+    <div class="content">
+        <center>
+            <h1>Wiimote</h1>
+        </center>
+        <!-- <h3>Last updated: May 16, 2024</h3> -->
+        <h3 id="sudo"></h3>
+<hr>
+<p>
+    You can control your robot using a Wiimote to an extent. To connect a Wiimote to your computer, you will
+    need to use a bluetooth adapter. I've only tested it with the Mayflash Dolphinbar so far.
+</p>
+<p>
+    The controls for the Wiimote are set up using 
+    <a href="/documentation/Controllers/Generic HID.html">Generic HID.</a>
+    You can download the Java file set up for the controls below.
+</p>
+<a class="outlink" href="/WiiRemote.java" download>Download</a>
+<hr>
+<p>
+    You can then create the Wiimote controller object in your code like below.
+</p>
+<pre><code class="language-java">WiiRemote wiimote = new WiiRemote(0);</code></pre>
+<hr>
+<p>
+    The Wiimote has to be used slightly differently than Xbox or PlayStation controllers for commands. 
+    You have to create a JoystickButton object before using commands with the controller. The JoystickButton 
+    object takes in 2 parameters. The first is the wiimote controller object. The second is the port of the 
+    button from the Wiimote. You also will have to import the WiiRemote code from the file you downloaded first.
+</p>
+<pre><code class="language-java">import frc.robot.utilities.WiiRemote;</code></pre>
+<pre><code class="language-java">new JoystickButton(wiimote, 1)
+    .onTrue(
+        Commands.run(
+            () -> {
+                wiiRemoteForward = true;
+            }
+        )
+    )
+    .whileTrue(
+        Commands.run(
+            () -> {
+                wiiRemoteForward = true;
+            }
+        )
+    )
+    .onFalse(
+        Commands.run(
+            () -> {
+                wiiRemoteForward = false;
+            }
+        )
+    );</code></pre>
+<p>
+    Unfortunately, this code for the Wiimote does not work with the accelerometer or gyroscope which means
+    you cannot use any motion controls other than the infrared pointing control.
+</p>
+
+<br>
+<br>
+<br>
+<br>
+</div>
+</body>

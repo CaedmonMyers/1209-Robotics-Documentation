@@ -29,9 +29,6 @@
     <script src="/Prism.js"></script>
     <script src="/editdates.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
-
-    <link rel="preload" href="/sidebar.html" as="fetch" type="text/html" crossorigin="anonymous">
-    <link rel="preload" as="script" href="/Prism.js">
 </head>
 
 <body style="background-color: #3C3C3C">
@@ -42,52 +39,15 @@
     <!-- Page content -->
     <div class="content">
         <center>
-            <h1>Xbox Controller</h1>
+            <h1>Path Planner</h1>
         </center>
-        <!-- <h3>Last updated: May 16, 2024</h3> -->
         <h3 id="sudo"></h3>
 <hr>
 <p>
-    To start using Xbox controllers in your code, you have to import the CommandXboxController library 
-    from WPILib. 
+
 </p>
-<pre><code class="language-java">import edu.wpi.first.wpilibj2.command.button.CommandXboxController;</code></pre>
-<p>
-    There is also a library available called XboxController. This is an older version of 
-    CommandXboxController and has mostly been replaced.
-</p>
-<hr>
-<p>
-    Before using the controller in your code, you have to create the CommandXboxController object. 
-    If you use multiple controllers, each one will need its own object and each object will need to 
-    have a different port (the number in parentheses).
-</p>
-<pre><code class="language-java">CommandXboxController joystick = new CommandXboxController(0);</code></pre>
-<hr>
-<p>
-    You can use the controller in your code by calling a specific button and using the .onTrue and .whiteTrue 
-    functions.
-</p>
-<pre><code class="language-java">joystick2
-    .leftBumper()
-    .onTrue(
-        Commands.run(
-            () -> {
-            // action here
-            }
-        )
-    )
-    .whileTrue(
-        Commands.run(
-            () -> {
-                // action here
-            }
-        )
-    );</code></pre>
-<p>
-    This code only runs a single command on each action. For more advanced commands, 
-    see the <a href="/documentation/Commands/Overview.html">command page</a> in the documentation.
-</p>
+
+<!-- <pre><code class="language-java">CommandXboxController joystick = new CommandXboxController(0);</code></pre> -->
 
 <br>
 <br>
