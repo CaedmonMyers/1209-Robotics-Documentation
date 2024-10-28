@@ -1,13 +1,14 @@
 /* The side navigation menu */
 .sidebar {
   font-family: Courier, Garamond, monospace;
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   width: 200px;
   background-color: #f1f1f1;
-  /* height: 100%; */
-  /* overflow: auto; */
   position: fixed;
+  height: 100vh; /* Set height to viewport height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 /* Sidebar links */
@@ -16,6 +17,17 @@
   color: black;
   padding: 10px;
   text-decoration: none;
+  overflow: hidden; /* Prevent scrolling within links */
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+/* Sidebar link pre elements */
+.sidebar a pre {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrolling within pre elements */
+  white-space: pre; /* Preserve whitespace */
+  font-family: Courier, Garamond, monospace;
 }
 
 /* Active/current link */
@@ -30,32 +42,34 @@
   color: white;
 }
 
-/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+/* Page content */
 div.content {
   margin-left: 200px;
   padding: 1px 16px;
-  /* height: 1000px; */
 }
 
-/* On screens that are less than 700px wide, make the sidebar into a topbar */
-/* @media screen and (max-width: 700px) {
-    .sidebar {
-      width: 100%;
-      height: auto;
-      position: relative;
-    }
-    .sidebar a {float: left;}
-    div.content {margin-left: 0;}
-  } */
-
-
-@media screen and (max-width: 0px) {
+/* Mobile responsiveness */
+@media screen and (max-width: 700px) {
   .sidebar {
-    margin: 0px;
-    padding: 0px;
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {
+    float: left;
+  }
+  div.content {
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar {
+    margin: 0;
+    padding: 0;
     width: 98%;
   }
-
+  
   .sidebar a {
     text-align: center;
     float: none;
