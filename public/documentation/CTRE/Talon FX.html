@@ -61,7 +61,17 @@ of the motor found in the CTRE Phoenix Tuner app.
 If you are going to pass the Talon FX object to a function such as in the example below, you have to add the 
 keyword 'public' before the variable.
 </p>
-<pre><code class="language-java">ButtonCommands.runMotor(motorName)</code></pre>
+<pre><code class="language-java">.runMotor(motorName)</code></pre>
+<pre><code class="language-java">
+joystick
+    .leftTrigger()
+    .onTrue(
+        ButtonCommands.resetMotor(motorName)
+    )
+    .whileTrue(
+        ButtonCommands.runMotor(motorName)
+    );
+</code></pre>
 
 <pre><code class="language-java">
 public static Command runMotor(TalonFX motorName) {
@@ -75,10 +85,27 @@ public static Command runMotor(TalonFX motorName) {
 }
 </code></pre>
 
+<pre><code class="language-java">
+public static Command resetShooter(TalonFX motorName) {
+    return Commands.run(
+        () -> {
+            motorName.set(0.0);
+        }
+    );
+}
+</code></pre>
+
 <p>
     This code will run the motor called 'motorName' and set it to 100% speed in the negative direction.
     The .set() method takes in a double from -1.0 to 1.0 and it is a percentage of the motor's maximum speed.
-    This uses commands to set the speed. We could add more Commands.run pieces to the method.
+    This uses commands to set the speed. We could add more Commands.run pieces to the method. The resetShooter 
+    method is called in the on true section of the left trigger action. For some reason, the motor does not stop
+    if we don't call this there.
+</p>
+
+<p></p>
+The code to make the controller run the command is also shown above. To learn more about controllers, 
+view the <a href="/documentation/Controllers/Overview.html">Controller Overview</a> page.
 </p>
 
 <br>
